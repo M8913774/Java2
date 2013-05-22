@@ -9,8 +9,8 @@ import java.util.Stack;
 import static org.junit.Assert.assertEquals;
 
 
-public class StartTest {
-    Start test = new Start();
+public class StartFactoryTest {
+    StartFactory test = new StartFactory();
 
     @Test
     public void test() throws Exception {

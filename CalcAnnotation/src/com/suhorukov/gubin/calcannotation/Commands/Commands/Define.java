@@ -1,20 +1,19 @@
 package com.suhorukov.gubin.calcannotation.Commands.Commands;
 
+import com.suhorukov.gubin.calcannotation.Commands.CResource;
 import com.suhorukov.gubin.calcannotation.Commands.Command;
+import com.suhorukov.gubin.calcannotation.Commands.Type;
 
 import java.util.Map;
 import java.util.Stack;
 
-/**
- * Created with IntelliJ IDEA.
- * User:
- * Date: 18.04.13
- * Time: 19:29
- * To change this template use File | Settings | File Templates.
- */
 public final class Define extends UserError implements Command {
-    @Override
-    public void execute(Stack<Double> stack, String[] args, Map<String, Double> defines) {
+    @CResource(type = Type.STACK)
+    private Stack<Double> stack;
+    @CResource(type = Type.DEFINE)
+    private Map<String, Double> defines;
+
+    public void execute(String[] args) {
 
         if (userError(stack, args, 3, 0)) {
 
@@ -28,7 +27,7 @@ public final class Define extends UserError implements Command {
 
                 } catch (NumberFormatException ex) {
                     System.out.println("ERROR DEFINE!");
-                    ex.printStackTrace();
+                    //ex.printStackTrace();
                 }
 
             }

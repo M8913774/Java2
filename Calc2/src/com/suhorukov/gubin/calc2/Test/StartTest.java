@@ -1,7 +1,9 @@
-package com.suhorukov.gubin.calc2;
+package com.suhorukov.gubin.calc2.Test;
+
+import com.suhorukov.gubin.calc2.*;
+import com.suhorukov.gubin.calc2.Commands.*;
 
 import org.junit.Test;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Stack;
@@ -10,6 +12,7 @@ import static org.junit.Assert.assertEquals;
 
 
 public class StartTest {
+
     Start test = new Start();
 
     @Test
