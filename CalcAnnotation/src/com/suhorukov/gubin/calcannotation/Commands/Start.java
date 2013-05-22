@@ -15,7 +15,7 @@ public class Start {
     static Map<String, Double> variables = new HashMap<String, Double>();
     static Scanner str = new Scanner(System.in);
 
-    /*void Start() {
+    public Start() {
         map.put("PUSH", new Push());
         map.put("POP", new Pop());
         map.put("+", new Add());
@@ -26,27 +26,14 @@ public class Start {
         map.put("PRINT", new Print());
         map.put("#", new Comment());
         map.put("DEFINE", new Define());
-    }*/
-
+    }
     public Stack<Double> getStack() {
         return stack;
     }
 
     public static void main(String[] args) {
-
-
-        Properties properties = new Properties();
-        try (InputStream in = Start.class.getResourceAsStream(args[1])){
-            properties.load(in);
-        } catch (IOException e) {
-            System.out.println("File 'properties' not found." );
-        }
-
-
-
-
-
-        /*try {
+        Start calc = new Start();
+        try {
             File file = new File(args[0]);
             str = new Scanner(file);
 
@@ -55,23 +42,24 @@ public class Start {
         }
         while (true) {
             String string = str.nextLine();
-            String[] s = string.split(" ");
+            calc.input(string);
+        }
 
-            if (s[0].equals("EXIT")) {
-                break;
+    }
+    public void input(String cmd) {
+        String[] s = cmd.split(" ");
+        if (s[0].equals("EXIT")) {
+            System.exit(1);
 
-            } else if (!map.containsKey(s[0])) {
-                System.out.println("You entered bad command, please reentered your command correctly.");
+        } else if (!map.containsKey(s[0])) {
+            System.out.println("You entered bad command, please reentered your command correctly.");
 
-            } else {
-                map.get(s[0]).execute(stack, s, variables);
-            }
+        } else {
+            map.get(s[0]).execute(stack, s, variables);
+        }
 
-            if (!str.hasNextLine()) {
-                str = new Scanner(System.in);
-            }
-
-        } */
-
+        if (!str.hasNextLine()) {
+            str = new Scanner(System.in);
         }
     }
+}
