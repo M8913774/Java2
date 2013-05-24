@@ -1,4 +1,4 @@
-package com.suhorukov.gubin.calc2.Test;
+package com.suhorukov.gubin.calc2.Commands;
 
 import com.suhorukov.gubin.calc2.*;
 import com.suhorukov.gubin.calc2.Commands.*;

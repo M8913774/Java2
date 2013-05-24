@@ -1,4 +1,4 @@
-package com.suhorukov.gubin.calc2;
+package com.suhorukov.gubin.calc2.Commands;
 
 import java.util.Map;
 import java.util.Stack;

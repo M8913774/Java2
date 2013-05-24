@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Calc/Calc.iml" filepath="$PROJECT_DIR$/Calc/Calc.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Calc2/Calc2.iml" filepath="$PROJECT_DIR$/Calc2/Calc2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CalcAnnotation/CalcAnnotation.iml" filepath="$PROJECT_DIR$/CalcAnnotation/CalcAnnotation.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GuessNumber/GuessNumber.iml" filepath="$PROJECT_DIR$/GuessNumber/GuessNumber.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Server/Server.iml" filepath="$PROJECT_DIR$/Server/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sorting/Sorting.iml" filepath="$PROJECT_DIR$/Sorting/Sorting.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TestSrv/TestSrv.iml" filepath="$PROJECT_DIR$/TestSrv/TestSrv.iml" />
+    </modules>
+  </component>
+</project>
+

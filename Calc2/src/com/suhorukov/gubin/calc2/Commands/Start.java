@@ -1,18 +1,23 @@
-package com.suhorukov.gubin.calc2;
+package com.suhorukov.gubin.calc2.Commands;
 
 import java.io.*;
 import java.util.*;
+
 import com.suhorukov.gubin.calc2.Commands.*;
 
 
 public class Start {
 
-    static Stack<Double> stack = new Stack<>();
-    static Map<String, Command> map = new HashMap<String, Command>();
-    static Map<String, Double> variables = new HashMap<String, Double>();
+    private Stack<Double> stack = new Stack<>();
+    private Map<String, Command> map = new HashMap<String, Command>();
+    private Map<String, Double> variables = new HashMap<String, Double>();
     static Scanner str = new Scanner(System.in);
 
     public Start() {
+        init();
+    }
+
+    private void init() {
         map.put("PUSH", new Push());
         map.put("POP", new Pop());
         map.put("+", new Add());
@@ -24,6 +29,7 @@ public class Start {
         map.put("#", new Comment());
         map.put("DEFINE", new Define());
     }
+
     public Stack<Double> getStack() {
         return stack;
     }
@@ -43,6 +49,7 @@ public class Start {
         }
 
     }
+
     public void input(String cmd) {
         String[] s = cmd.split(" ");
         if (s[0].equals("EXIT")) {
@@ -53,10 +60,6 @@ public class Start {
 
         } else {
             map.get(s[0]).execute(stack, s, variables);
-        }
-
-        if (!str.hasNextLine()) {
-            str = new Scanner(System.in);
         }
     }
 }

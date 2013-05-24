@@ -1,4 +1,4 @@
-package com.suhorukov.gubin.calcannotation.Commands.Commands;
+package com.suhorukov.gubin.calcannotation.Commands.commands;
 
 import com.suhorukov.gubin.calcannotation.Commands.CResource;
 import com.suhorukov.gubin.calcannotation.Commands.Command;
@@ -18,7 +18,7 @@ public final class Define extends UserError implements Command {
         if (userError(stack, args, 3, 0)) {
 
             if (Character.isDigit(args[1].charAt(0))) {
-                System.out.println("First character of variables doesn't digit");
+                System.out.println("Isn't a digit");
 
             } else {
                 try {
@@ -26,7 +26,7 @@ public final class Define extends UserError implements Command {
                     defines.put(args[1], Double.parseDouble(args[2]));
 
                 } catch (NumberFormatException ex) {
-                    System.out.println("ERROR DEFINE!");
+                    System.out.println("ERROR IN DEFINE!");
                     //ex.printStackTrace();
                 }
 

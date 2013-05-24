@@ -19,10 +19,12 @@ public class PathRequestHandler {
     }
 
     public final String[] getPath() {
+        System.out.println("PRH said: path = " + path);
         return path;
     }
 
     public final String getCommand() {
+        System.out.println("PRH said: command = " + command);
         return command;
     }
 }

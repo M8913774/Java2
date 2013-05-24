@@ -5,9 +5,9 @@ import java.util.*;
 
 public class FileService {
     String command;
-    String path;
-    String filePath;
-    String pathRoot;
+    String path = "";
+    String filePath = "";
+    String pathRoot = "";
     boolean makeRoot;
     Map<String, String> params = new HashMap<String, String>();
     Map<String, String> dirMap = new HashMap<String, String>();
@@ -16,26 +16,31 @@ public class FileService {
 
     public FileService(PathRequestHandler requestHandler, String args) throws IllegalArgumentException {
         command = requestHandler.getCommand();
-        if (!command.equals("GET") || !command.equals("HEAD")) throw new IllegalArgumentException();
+        if (!(command.equals("GET")) && !(command.equals("HEAD"))) throw new IllegalArgumentException();
+        System.out.println("FS ask PRH: give me path!");
         String[] arrayPath = requestHandler.getPath();
-        if (arrayPath.length != 0) {
-            makeRoot = true;
-            path = "";
-            filePath = "";
-            pathRoot = "";
-            int i = 0;
+        if (!arrayPath[0].equals("favicon.ico")) {
             for (String s : arrayPath) {
-                path += s + "/";
-                if (i < (arrayPath.length - 1)) pathRoot += arrayPath[i] + "/";
-                filePath += s + File.separator;
-                i++;
+                path += "/" + s;
+                filePath += File.separator + s;
             }
+            filePath = args + filePath;
+            if (arrayPath.length == 0) {
 
-            filePath = args + File.separator + filePath;
-        } else {
-            makeRoot = false;
-            path = "";
-            filePath = args;
+                makeRoot = false;
+                pathRoot = "";
+
+            } else {
+
+                makeRoot = true;
+                int i = 1;
+                for (String s : arrayPath) {
+                    if (i < arrayPath.length) pathRoot = "/" + s;
+                    i++;
+                }
+            }
+            System.out.println("FS create arguments:\n makeRoot = " + makeRoot +
+                    "\n path = " + path + "\n filePath = " + filePath + "\n pathRoot = " + pathRoot);
         }
     }
 
@@ -47,10 +52,13 @@ public class FileService {
                 switch (fileSystemManager.checkFile()) {
                     case DIRECTORY:
                         params.put("status", "200 OK");
+                        dirMap = fileSystemManager.getDirMap();
+                        fileSizeMap
+
                         List<String> dirList = fileSystemManager.getDirList();
                         List<String> dirTimeList = fileSystemManager.getDirTimeList();
                         int i = 0;
-                        for (String s: dirList) {
+                        for (String s : dirList) {
                             dirMap.put(s, dirTimeList.get(i));
                             i++;
                         }
@@ -65,12 +73,12 @@ public class FileService {
                         List<String> fileTimeList = fileSystemManager.getFileTimeList();
                         List<String> fileSizeList = fileSystemManager.getFileSizeList();
                         i = 0;
-                        for (String s: fileList) {
+                        for (String s : fileList) {
                             fileMap.put(s, fileTimeList.get(i));
                             i++;
                         }
                         i = 0;
-                        for (String s: fileList) {
+                        for (String s : fileList) {
                             fileSizeMap.put(s, fileSizeList.get(i));
                             i++;
                         }
@@ -87,7 +95,7 @@ public class FileService {
 
                         } else {
                             params.put("Content-Type:", "text/html");
-                            result = new ContentBuilder().create(dirMap,fileMap,fileSizeMap,path,filePath,pathRoot,makeRoot);
+                            result = new ContentBuilder().create(dirMap, fileMap, fileSizeMap, path, filePath, pathRoot, makeRoot);
 
                         }
                         return result;

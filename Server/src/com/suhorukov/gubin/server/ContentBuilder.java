@@ -1,24 +1,24 @@
 package com.suhorukov.gubin.server;
 
 
-
 import java.util.Map;
 
 public class ContentBuilder {
     String result = "";
+    String root = "http://localhost:8080";
 
     public String create(Map<String, String> dirMap, Map<String, String> fileMap, Map<String, String> fileSizeMap,
                          String path, String filePath, String pathRoot, boolean makeRoot) {
 
-        if (makeRoot) result = ("<tr><td><a href = '" + pathRoot + "'> .. </a></td><td></td><td></td>\n");
+        if (makeRoot) result = ("<tr><td><a href = '" + root + pathRoot + "'> .. </a></td><td></td><td></td>\n");
 
         for (String s : dirMap.keySet()) {
-            result += ("<tr><td><a href = '" + path + "/" + s + "'>" + s + "</a></td><td></td><td>" +
+            result += ("<tr><td><a href = '" + root + path+"/" + s + "'>" + s + "</a></td><td></td><td>" +
                     dirMap.get(s) + "</td>\n");
         }
 
         for (String s : fileMap.keySet()) {
-            result += ("<tr><td><a href = '" + path + "/" + s + "'>" + s + "</a></td><td>" +
+            result += ("<tr><td><a href = '" + root + path + "/"  + s + "'>" + s + "</a></td><td>" +
                     fileSizeMap.get(s) + "b </td><td>" + dirMap.get(s) + "</td>\n");
         }
 

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EclipseCodeFormatter">
+    <option name="defaultSettings" value="true" />
+    <option name="id" value="1351070864943" />
+    <option name="name" value="default" />
+    <option name="pathToConfigFileJava" value="C:/perforce/steve/Sandbox/codestyle/accusoft-proxyserver.xml" />
+    <option name="selectedJavaProfile" value="accusoft-proxyserver" />
+  </component>
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+    <list size="1">
+      <item index="0" class="java.lang.String" itemvalue="org.junit.Test" />
+    </list>
+  </component>
+  <component name="IdProvider" IDEtalkID="C3C23DD67D084F0C3A6ACE9BBF2A23E5" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>
+

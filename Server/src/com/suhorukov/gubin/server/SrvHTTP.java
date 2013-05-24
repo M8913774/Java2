@@ -64,12 +64,12 @@ public class SrvHTTP {
 
                     output.write("HTTP/1.0 200 OK\r\n".getBytes());
                     output.write("Content-Type: text/html\r\n".getBytes());
-                    output.write(("Content-Length: "+answer.length()+"\r\n").getBytes());
+                    output.write(("Content-Length: " + answer.length() + "\r\n").getBytes());
                     output.write("\r\n".getBytes());
                     output.write(answer.getBytes());
                     output.flush();
                 } catch (IllegalArgumentException e) {
-                    System.out.println();
+                    System.out.println("Server said: IllegalArgumentException");
                 }
             } catch (IOException e) {
                 e.printStackTrace();

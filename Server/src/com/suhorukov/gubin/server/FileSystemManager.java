@@ -2,15 +2,18 @@ package com.suhorukov.gubin.server;
 
 
 import java.io.File;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class FileSystemManager {
-    List<String> dirList;
-    List<String> dirTimeList;
-    List<String> fileList;
-    List<String> fileTimeList;
-    List<String> fileSizeList;
+    /*List<String> dirList = new LinkedList<>();
+    List<String> dirTimeList = new LinkedList<>();
+    List<String> fileList = new LinkedList<>();
+    List<String> fileTimeList = new LinkedList<>();
+    List<String> fileSizeList = new LinkedList<>();*/
+
+    Map<String, String> fileMap = new HashMap<>();
+    Map<String, String> dirMap = new HashMap<>();
+    Map<String, String> fileSizeMap = new HashMap<>();
     File file;
 
     enum check {FILE, DIRECTORY, ERROR}
@@ -21,16 +24,24 @@ public class FileSystemManager {
         File[] list = file.listFiles();
 
         for (File s : list) {
+            System.out.println("FSM said: " + s.getName());
             if (s.isDirectory()) {
-                dirList.add(s.toString());
-                dirTimeList.add(new Date(s.lastModified()).toString());
+                dirMap.put(s.getName(), new Date(s.lastModified()).toString());
+
+
+                //dirList.add(s.getName());
+                //dirTimeList.add(new Date(s.lastModified()).toString());
             } else {
-                fileList.add(s.toString());
+                fileMap.put(s.getName(), new Date(s.lastModified()).toString());
+                fileSizeMap.put(s.getName(), String.valueOf(s.length()));
+
+
+                /*fileList.add(s.getName());
                 fileTimeList.add(new Date(s.lastModified()).toString());
-                fileSizeList.add(String.valueOf(s.length()));
+                fileSizeList.add(String.valueOf(s.length())); */
             }
         }
-
+        System.out.println("FSM said: I'm here, boys!");
     }
 
     public check checkFile() {
@@ -41,19 +52,15 @@ public class FileSystemManager {
 
     }
 
-    public List<String> getFileList() {
-        return fileList;
+    public Map<String, String> getFileMap() {
+        return fileMap;
     }
-    public List<String> getDirTimeList() {
-        return fileTimeList;
+
+    public Map<String, String> getDirMap() {
+        return dirMap;
     }
-    public List<String> getDirList() {
-        return dirList;
-    }
-    public List<String> getFileTimeList() {
-        return fileTimeList;
-    }
-    public List<String> getFileSizeList() {
-        return fileSizeList;
+
+    public Map<String, String> getFileSizeMap() {
+        return fileSizeMap;
     }
 }

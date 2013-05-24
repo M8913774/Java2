@@ -1,10 +1,8 @@
-package com.suhorukov.gubin.calcannotation.Commands.Commands;
+package com.suhorukov.gubin.calcannotation.Commands.commands;
 
 import com.suhorukov.gubin.calcannotation.Commands.Command;
 
 import java.util.Arrays;
-import java.util.Map;
-import java.util.Stack;
 
 
 public final class Comment implements Command {
