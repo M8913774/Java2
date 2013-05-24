@@ -40,7 +40,7 @@ public class HtlmGen {
             }
         }
         if (list.contains(file)) {
-            System.out.println("dir OK");
+            System.out.println("dirMap OK");
             return true;
 
         }   else {
@@ -81,8 +81,10 @@ public class HtlmGen {
         int i = 1;
 
         if (parent != null) {
+            int j= 0;
             for (String d : parent) {
                 subDir += d + "/";
+
             }
             if (parent.length == 1) {
                 parentDir = "/";
@@ -93,7 +95,7 @@ public class HtlmGen {
 
             if (parentDir != null) {
                 i = 2;
-                href[1] = ("<tr><td><a href = " + "'" + parentDir + "'>" + " .. </a></td><td></td><td>"
+                href[1] = ("<tr><td><a href = " + "'" + "http://localhost:8080/" + parentDir + "'>" + " .. </a></td><td></td><td>"
                         + (new Date(file.getParentFile().lastModified()).toString()) + "</td>");
             }
 
@@ -105,9 +107,9 @@ public class HtlmGen {
         for (File srt : s) {
             if (parent != null) {
                 System.out.println("srt.getName() is " + srt.getName());
-                name = subDir + srt.getName();
+                name = "http://localhost:8080/" + subDir + srt.getName();
                 System.out.println("name is " + name);
-            } else name = srt.getName();
+            } else name = "http://localhost:8080/" + srt.getName();
 
             String time = new Date(srt.lastModified()).toString();
 
