@@ -2,6 +2,7 @@ package com.suhorukov.gubin.server;
 
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class FileSystemManager {
@@ -21,26 +22,6 @@ public class FileSystemManager {
     public FileSystemManager(String path) {
 
         file = new File(path);
-        File[] list = file.listFiles();
-
-        for (File s : list) {
-            System.out.println("FSM said: " + s.getName());
-            if (s.isDirectory()) {
-                dirMap.put(s.getName(), new Date(s.lastModified()).toString());
-
-
-                //dirList.add(s.getName());
-                //dirTimeList.add(new Date(s.lastModified()).toString());
-            } else {
-                fileMap.put(s.getName(), new Date(s.lastModified()).toString());
-                fileSizeMap.put(s.getName(), String.valueOf(s.length()));
-
-
-                /*fileList.add(s.getName());
-                fileTimeList.add(new Date(s.lastModified()).toString());
-                fileSizeList.add(String.valueOf(s.length())); */
-            }
-        }
         System.out.println("FSM said: I'm here, boys!");
     }
 
@@ -50,6 +31,21 @@ public class FileSystemManager {
         else if (file.isFile()) return check.FILE;
         else return check.ERROR;
 
+    }
+
+    public void listFiles() throws FileNotFoundException{
+        if (checkFile() == check.DIRECTORY) {
+            File[] list = file.listFiles();
+            for (File s : list) {
+                System.out.println("FSM said: " + s.getName());
+                if (s.isDirectory()) {
+                    dirMap.put(s.getName(), new Date(s.lastModified()).toString());
+                } else {
+                    fileMap.put(s.getName(), new Date(s.lastModified()).toString());
+                    fileSizeMap.put(s.getName(), String.valueOf(s.length()));
+                }
+            }
+        } else throw new FileNotFoundException();
     }
 
     public Map<String, String> getFileMap() {

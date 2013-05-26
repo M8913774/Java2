@@ -8,7 +8,7 @@ public class ContentBuilder {
     String root = "http://localhost:8080";
 
     public String create(Map<String, String> dirMap, Map<String, String> fileMap, Map<String, String> fileSizeMap,
-                         String path, String filePath, String pathRoot, boolean makeRoot) {
+                         String path, String pathRoot, boolean makeRoot) {
 
         if (makeRoot) result = ("<tr><td><a href = '" + root + pathRoot + "'> .. </a></td><td></td><td></td>\n");
 

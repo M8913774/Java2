@@ -2,7 +2,7 @@
   <library name="org.junit:com.springsource.org.junit:4.9.0" type="repository">
     <properties maven-id="org.junit:com.springsource.org.junit:4.9.0" />
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../Обучение/IdeaProjects/First/lib/com.springsource.org.junit-4.9.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/com.springsource.org.junit-4.9.0.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

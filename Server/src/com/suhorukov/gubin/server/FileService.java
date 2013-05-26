@@ -1,6 +1,7 @@
 package com.suhorukov.gubin.server;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class FileService {
@@ -19,7 +20,8 @@ public class FileService {
         if (!(command.equals("GET")) && !(command.equals("HEAD"))) throw new IllegalArgumentException();
         System.out.println("FS ask PRH: give me path!");
         String[] arrayPath = requestHandler.getPath();
-        if (!arrayPath[0].equals("favicon.ico")) {
+
+        if (!arrayPath[0].equals("favicon.ico") && arrayPath != null) {
             for (String s : arrayPath) {
                 path += "/" + s;
                 filePath += File.separator + s;
@@ -52,16 +54,14 @@ public class FileService {
                 switch (fileSystemManager.checkFile()) {
                     case DIRECTORY:
                         params.put("status", "200 OK");
-                        dirMap = fileSystemManager.getDirMap();
-                        fileSizeMap
-
-                        List<String> dirList = fileSystemManager.getDirList();
-                        List<String> dirTimeList = fileSystemManager.getDirTimeList();
-                        int i = 0;
-                        for (String s : dirList) {
-                            dirMap.put(s, dirTimeList.get(i));
-                            i++;
+                        try {
+                            fileSystemManager.listFiles();
+                        } catch (FileNotFoundException fe) {
+                            throw new IllegalArgumentException();
                         }
+                        dirMap = fileSystemManager.getDirMap();
+                        fileSizeMap = fileSystemManager.getFileSizeMap();
+
                         final List<String> listD = new ArrayList<>(dirMap.keySet());
                         Collections.sort(listD, new Comparator<String>() {
                             public int compare(String o1, String o2) {
@@ -69,20 +69,8 @@ public class FileService {
                             }
                         });
 
-                        List<String> fileList = fileSystemManager.getFileList();
-                        List<String> fileTimeList = fileSystemManager.getFileTimeList();
-                        List<String> fileSizeList = fileSystemManager.getFileSizeList();
-                        i = 0;
-                        for (String s : fileList) {
-                            fileMap.put(s, fileTimeList.get(i));
-                            i++;
-                        }
-                        i = 0;
-                        for (String s : fileList) {
-                            fileSizeMap.put(s, fileSizeList.get(i));
-                            i++;
-                        }
                         final List<String> listF = new ArrayList<>(fileMap.keySet());
+                        Collections.sort(listF);
                         Collections.sort(listF, new Comparator<String>() {
                             public int compare(String o1, String o2) {
                                 return (fileMap.get(o2)).compareTo((fileMap.get(o1)));
@@ -90,12 +78,12 @@ public class FileService {
                         });
 
 
-                        if (fileList.contains("index.html")) {
+                        if (fileMap.keySet().contains("index.html")) {
 
 
                         } else {
                             params.put("Content-Type:", "text/html");
-                            result = new ContentBuilder().create(dirMap, fileMap, fileSizeMap, path, filePath, pathRoot, makeRoot);
+                            result = new ContentBuilder().create(dirMap, fileMap, fileSizeMap, path, pathRoot, makeRoot);
 
                         }
                         return result;
