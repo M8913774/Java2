@@ -1,4 +1,4 @@
-package com.suhorukov.gubin.calcannotation.Commands.commands;
+package com.suhorukov.gubin.calcannotation.commandz.commandz;
 
 import java.util.Stack;
 
@@ -15,7 +15,7 @@ class UserError {
 
         } else {
             System.out.println(
-                    "Error: stack is not full! You made ​​a mistake entering the sequence of commands.");
+                    "Error: stack is not full! You made ​​a mistake entering the sequence of commandz.");
             return false;
         }
     }

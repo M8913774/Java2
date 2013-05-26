@@ -1,4 +1,4 @@
-package com.suhorukov.gubin.calcannotation.Commands;
+package com.suhorukov.gubin.calcannotation.commandz;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

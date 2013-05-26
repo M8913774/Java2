@@ -1,18 +1,20 @@
-package com.suhorukov.gubin.calcannotation.Commands.Commands;
+package com.suhorukov.gubin.calcannotation.commandz.commandz;
 
-import com.suhorukov.gubin.calcannotation.Commands.Command;
+import com.suhorukov.gubin.calcannotation.commandz.CResource;
+import com.suhorukov.gubin.calcannotation.commandz.Command;
+import com.suhorukov.gubin.calcannotation.commandz.Type;
+
 import java.util.Map;
 import java.util.Stack;
 
-/**
- * Created with IntelliJ IDEA.
- * User:
- * Date: 18.04.13
- * Time: 19:28
- * To change this template use File | Settings | File Templates.
- */
+
 public class Push extends UserError implements Command {
-    public void execute(Stack<Double> stack, String[] args, Map<String, Double> defines) {
+    @CResource(type = Type.STACK)
+    private Stack<Double> stack;
+    @CResource(type = Type.DEFINE)
+    private Map<String, Double> defines;
+
+    public void execute(String[] args) {
 
         if (userError(stack, args, 2, 0)) {
             try {
@@ -25,7 +27,7 @@ public class Push extends UserError implements Command {
                 }
 
             } catch (NumberFormatException ex) {
-                System.out.println("ERROR PUSH!");
+                System.out.println("ERROR IN PUSH!");
                 ex.printStackTrace();
             }
         }
