@@ -3,7 +3,7 @@ package com.suhorukov.gubin.server;
 
 public class PathRequestHandler {
 
-    String[] path={""};
+    String[] path;
     String command;
 
     public PathRequestHandler(String request) throws IllegalArgumentException {

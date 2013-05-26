@@ -1,4 +1,4 @@
-package com.suhorukov.gubin.server;
+package com.suhorukov.gubin.htmlGenerator;
 
 
 import org.apache.commons.io.*;

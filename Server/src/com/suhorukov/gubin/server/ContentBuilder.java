@@ -19,7 +19,7 @@ public class ContentBuilder {
 
         for (String s : fileMap.keySet()) {
             result += ("<tr><td><a href = '" + root + path + "/"  + s + "'>" + s + "</a></td><td>" +
-                    fileSizeMap.get(s) + "b </td><td>" + dirMap.get(s) + "</td>\n");
+                    fileSizeMap.get(s) + "b </td><td>" + fileMap.get(s) + "</td>\n");
         }
 
         result = "<html>\n" +

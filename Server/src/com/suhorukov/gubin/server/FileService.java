@@ -20,27 +20,25 @@ public class FileService {
         if (!(command.equals("GET")) && !(command.equals("HEAD"))) throw new IllegalArgumentException();
         System.out.println("FS ask PRH: give me path!");
         String[] arrayPath = requestHandler.getPath();
+        if (arrayPath == null) {
 
-        if (!arrayPath[0].equals("favicon.ico") && arrayPath != null) {
+            makeRoot = false;
+            pathRoot = "";
+            filePath = args;
+
+        } else if (!arrayPath[0].equals("favicon.ico")) {
+            int i = 1;
             for (String s : arrayPath) {
                 path += "/" + s;
                 filePath += File.separator + s;
+                if (i < arrayPath.length) {
+                    pathRoot += "/" + s;
+                    System.out.println("FS said: make pathRoot current parameter is " + s);
+                }
+                i++;
             }
             filePath = args + filePath;
-            if (arrayPath.length == 0) {
-
-                makeRoot = false;
-                pathRoot = "";
-
-            } else {
-
-                makeRoot = true;
-                int i = 1;
-                for (String s : arrayPath) {
-                    if (i < arrayPath.length) pathRoot = "/" + s;
-                    i++;
-                }
-            }
+            makeRoot = true;
             System.out.println("FS create arguments:\n makeRoot = " + makeRoot +
                     "\n path = " + path + "\n filePath = " + filePath + "\n pathRoot = " + pathRoot);
         }
@@ -61,11 +59,12 @@ public class FileService {
                         }
                         dirMap = fileSystemManager.getDirMap();
                         fileSizeMap = fileSystemManager.getFileSizeMap();
+                        fileMap = fileSystemManager.getFileMap();
 
                         final List<String> listD = new ArrayList<>(dirMap.keySet());
                         Collections.sort(listD, new Comparator<String>() {
                             public int compare(String o1, String o2) {
-                                return (dirMap.get(o2)).compareTo((dirMap.get(o1)));
+                                return (dirMap.get(o2)).compareTo(dirMap.get(o1));
                             }
                         });
 
@@ -73,7 +72,7 @@ public class FileService {
                         Collections.sort(listF);
                         Collections.sort(listF, new Comparator<String>() {
                             public int compare(String o1, String o2) {
-                                return (fileMap.get(o2)).compareTo((fileMap.get(o1)));
+                                return (fileMap.get(o2)).compareTo(fileMap.get(o1));
                             }
                         });
 

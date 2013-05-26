@@ -3,18 +3,15 @@ package com.suhorukov.gubin.server;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class FileSystemManager {
-    /*List<String> dirList = new LinkedList<>();
-    List<String> dirTimeList = new LinkedList<>();
-    List<String> fileList = new LinkedList<>();
-    List<String> fileTimeList = new LinkedList<>();
-    List<String> fileSizeList = new LinkedList<>();*/
 
     Map<String, String> fileMap = new HashMap<>();
     Map<String, String> dirMap = new HashMap<>();
     Map<String, String> fileSizeMap = new HashMap<>();
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
     File file;
 
     enum check {FILE, DIRECTORY, ERROR}
@@ -39,9 +36,9 @@ public class FileSystemManager {
             for (File s : list) {
                 System.out.println("FSM said: " + s.getName());
                 if (s.isDirectory()) {
-                    dirMap.put(s.getName(), new Date(s.lastModified()).toString());
+                    dirMap.put(s.getName(), simpleDateFormat.format(s.lastModified()));
                 } else {
-                    fileMap.put(s.getName(), new Date(s.lastModified()).toString());
+                    fileMap.put(s.getName(), simpleDateFormat.format(s.lastModified()));
                     fileSizeMap.put(s.getName(), String.valueOf(s.length()));
                 }
             }
