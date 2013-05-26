@@ -1,4 +1,4 @@
-package com.suhorukov.gubin.calcannotation.commandz;
+package com.suhorukov.gubin.calcannotation.commands;
 
 import org.junit.Test;
 

@@ -1,8 +1,8 @@
-package com.suhorukov.gubin.calcannotation.commandz.commandz;
+package com.suhorukov.gubin.calcannotation.commands.commands;
 
-import com.suhorukov.gubin.calcannotation.commandz.CResource;
-import com.suhorukov.gubin.calcannotation.commandz.Command;
-import com.suhorukov.gubin.calcannotation.commandz.Type;
+import com.suhorukov.gubin.calcannotation.commands.CResource;
+import com.suhorukov.gubin.calcannotation.commands.Command;
+import com.suhorukov.gubin.calcannotation.commands.Type;
 
 import java.util.Stack;
 

@@ -1,4 +1,4 @@
-package com.suhorukov.gubin.calcannotation.commandz;
+package com.suhorukov.gubin.calcannotation.commands;
 
 import java.io.IOException;
 import java.io.InputStream;

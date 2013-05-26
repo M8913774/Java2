@@ -1,4 +1,4 @@
-package com.suhorukov.gubin.calcannotation.commandz;
+package com.suhorukov.gubin.calcannotation.commands;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -32,7 +32,7 @@ public class StartFactory {
             try{
                 in = new FileInputStream(args[0]);
             }catch (FileNotFoundException e) {
-                System.out.println("File not found, type the commandz below:");
+                System.out.println("File not found, type the commands below:");
             }
         }
 

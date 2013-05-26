@@ -1,4 +1,4 @@
-package com.suhorukov.gubin.calcannotation.commandz;
+package com.suhorukov.gubin.calcannotation.commands;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;

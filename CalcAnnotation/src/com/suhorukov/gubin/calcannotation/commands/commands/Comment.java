@@ -1,6 +1,6 @@
-package com.suhorukov.gubin.calcannotation.commandz.commandz;
+package com.suhorukov.gubin.calcannotation.commands.commands;
 
-import com.suhorukov.gubin.calcannotation.commandz.Command;
+import com.suhorukov.gubin.calcannotation.commands.Command;
 
 import java.util.Arrays;
 
