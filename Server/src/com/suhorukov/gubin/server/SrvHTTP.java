@@ -23,7 +23,7 @@ public class SrvHTTP {
             while (true) {
                 Socket client = srv.accept();
                 System.out.println("Connect: " + client.getInetAddress() + ":" + client.getPort());
-                new Thread(new Start(client, src)).start();
+                new Thread(new Start(client, src, port)).start();
             }
         } catch (Throwable e) {
             e.printStackTrace();
@@ -31,15 +31,17 @@ public class SrvHTTP {
     }
 
     private static class Start implements Runnable {
-        String args;
+        private String args;
+        private int port;
         Map<String, String> params = new HashMap<String, String>();
         private InputStream input;
         private OutputStream output;
 
-        Start(Socket srv, String args) throws Throwable {
+        Start(Socket srv, String args, int port) throws Throwable {
             this.args = args;
             this.input = srv.getInputStream();
             this.output = srv.getOutputStream();
+            this.port = port;
         }
 
         public void run() {
@@ -60,7 +62,7 @@ public class SrvHTTP {
                     PathRequestHandler request;
                     request = new PathRequestHandler(data);
                     FileService fileService = new FileService(request, args);
-                    String answer = fileService.createDoc();
+                    String answer = fileService.createDoc(port);
 
                     output.write("HTTP/1.0 200 OK\r\n".getBytes());
                     output.write("Content-Type: text/html\r\n".getBytes());

@@ -4,21 +4,21 @@ package com.suhorukov.gubin.server;
 import java.util.Map;
 
 public class ContentBuilder {
-    String result = "";
-    String root = "http://localhost:8080";
+    private String result = "";
 
-    public String create(Map<String, String> dirMap, Map<String, String> fileMap, Map<String, String> fileSizeMap,
-                         String path, String pathRoot, boolean makeRoot) {
 
+    public String buildHtml(int port, Map<String, String> dirMap, Map<String, String> fileMap, Map<String, String> fileSizeMap,
+                            String path, String pathRoot, boolean makeRoot) {
+        String root = "http://localhost:" + port;
         if (makeRoot) result = ("<tr><td><a href = '" + root + pathRoot + "'> .. </a></td><td></td><td></td>\n");
 
         for (String s : dirMap.keySet()) {
-            result += ("<tr><td><a href = '" + root + path+"/" + s + "'>" + s + "</a></td><td></td><td>" +
+            result += ("<tr><td><a href = '" + root + path + "/" + s + "'>" + s + "</a></td><td></td><td>" +
                     dirMap.get(s) + "</td>\n");
         }
 
         for (String s : fileMap.keySet()) {
-            result += ("<tr><td><a href = '" + root + path + "/"  + s + "'>" + s + "</a></td><td>" +
+            result += ("<tr><td><a href = '" + root + path + "/" + s + "'>" + s + "</a></td><td>" +
                     fileSizeMap.get(s) + "b </td><td>" + fileMap.get(s) + "</td>\n");
         }
 
@@ -39,6 +39,7 @@ public class ContentBuilder {
                 "</html>";
         return result;
     }
+
 
     /*private String header() {
         String head = "HTTP/1.0 " + params.get("status") + "\r\n";

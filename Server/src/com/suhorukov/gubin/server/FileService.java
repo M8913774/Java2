@@ -39,12 +39,12 @@ public class FileService {
             }
             filePath = args + filePath;
             makeRoot = true;
-            System.out.println("FS create arguments:\n makeRoot = " + makeRoot +
+            System.out.println("FS buildHtml arguments:\n makeRoot = " + makeRoot +
                     "\n path = " + path + "\n filePath = " + filePath + "\n pathRoot = " + pathRoot);
         }
     }
 
-    public String createDoc() {
+    public String createDoc(int port) {
         String result = "";
         switch (command) {
             case "GET":
@@ -78,11 +78,16 @@ public class FileService {
 
 
                         if (fileMap.keySet().contains("index.html")) {
-
+                            try {
+                                result = FileSystemReader.readTextFile(filePath + File.separator + "index.html");
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            }
 
                         } else {
                             params.put("Content-Type:", "text/html");
-                            result = new ContentBuilder().create(dirMap, fileMap, fileSizeMap, path, pathRoot, makeRoot);
+                            result = new ContentBuilder().buildHtml(port, dirMap, fileMap, fileSizeMap,
+                                    path, pathRoot, makeRoot);
 
                         }
                         return result;

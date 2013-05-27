@@ -34,7 +34,6 @@ public class FileSystemManager {
         if (checkFile() == check.DIRECTORY) {
             File[] list = file.listFiles();
             for (File s : list) {
-                System.out.println("FSM said: " + s.getName());
                 if (s.isDirectory()) {
                     dirMap.put(s.getName(), simpleDateFormat.format(s.lastModified()));
                 } else {
