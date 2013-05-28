@@ -1,6 +1,7 @@
 package com.suhorukov.gubin.server;
 
 
+import javax.activation.MimetypesFileTypeMap;
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -54,6 +55,7 @@ public class SrvHTTP {
                 while ((line = in.read()) != -1 && line != 10 && line != 13) {
                     sb.append((char) line);
                 }
+
 
                 String data = sb.toString();
                 System.out.println("Request is: " + data);

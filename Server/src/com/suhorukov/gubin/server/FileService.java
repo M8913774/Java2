@@ -5,15 +5,14 @@ import java.io.FileNotFoundException;
 import java.util.*;
 
 public class FileService {
-    String command;
-    String path = "";
-    String filePath = "";
-    String pathRoot = "";
-    boolean makeRoot;
-    Map<String, String> params = new HashMap<String, String>();
-    Map<String, String> dirMap = new HashMap<String, String>();
-    Map<String, String> fileMap = new HashMap<String, String>();
-    Map<String, String> fileSizeMap = new HashMap<String, String>();
+    private String command;
+    private String path = "";
+    private String filePath = "";
+    private String pathRoot = "";
+    private boolean makeRoot;
+    private Map<String, String> dirMap = new HashMap<String, String>();
+    private Map<String, String> fileMap = new HashMap<String, String>();
+    private Map<String, String> fileSizeMap = new HashMap<String, String>();
 
     public FileService(PathRequestHandler requestHandler, String args) throws IllegalArgumentException {
         command = requestHandler.getCommand();
@@ -51,7 +50,6 @@ public class FileService {
                 FileSystemManager fileSystemManager = new FileSystemManager(filePath);
                 switch (fileSystemManager.checkFile()) {
                     case DIRECTORY:
-                        params.put("status", "200 OK");
                         try {
                             fileSystemManager.listFiles();
                         } catch (FileNotFoundException fe) {
@@ -85,7 +83,6 @@ public class FileService {
                             }
 
                         } else {
-                            params.put("Content-Type:", "text/html");
                             result = new ContentBuilder().buildHtml(port, dirMap, fileMap, fileSizeMap,
                                     path, pathRoot, makeRoot);
 
@@ -94,6 +91,7 @@ public class FileService {
 
 
                     case FILE:
+                        //result = null;
                         return result;
 
                     case ERROR:
